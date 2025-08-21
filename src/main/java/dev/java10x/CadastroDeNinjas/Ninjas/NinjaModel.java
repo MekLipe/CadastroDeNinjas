@@ -20,6 +20,7 @@ public class NinjaModel {
     private String nome;
     private String email;
     private int idade;
+    private String img_url;
 
     // N/Many/Vários Ninjas será atrelada a 1 Missão
     @ManyToOne
