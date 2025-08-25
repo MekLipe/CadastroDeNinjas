@@ -65,6 +65,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>11.7.2</version>
+				<configuration>
+					<url>jdbc:h2:file:D:/Java10x/CadastroDeNinjas/data/CadastroDeNinjasDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</url>
+					<user>cadastro_bd</user>
+					<password>admin</password>
+					<cleanDisabled>false</cleanDisabled>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
