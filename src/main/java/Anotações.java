@@ -1,8 +1,13 @@
 public @interface Anotações {
     /*
     * Anotações úteis sobre Spring:
+    * @Mapping:
+    * -   Post:  Criar
+    * -    Put:  Atualizar
+    * -    Get:  Mostrar
+    * - Delete:  Deletar
     *
-    *
+    * O JPA serve para facilitar usando a vida do programador, pois ele é um compilado de queries do BD em forma de métodos
     *
     *
     * Anotações úteis sobre Git:
