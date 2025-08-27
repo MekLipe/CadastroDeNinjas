@@ -20,9 +20,10 @@ public class NinjaController {
     }
 
     // Adicionar ninja (CREATE)
+    // @RequestBody faz com que o usuário envie um dado no qual vai ser serializado e inserido no BD
     @PostMapping("/criar")
-    public String CriarNinja() {
-        return "Ninja criado";
+    public NinjaModel CriarNinja(@RequestBody NinjaModel ninja) {
+        return ninja_service.CriarNinja(ninja);
     }
 
     // Mostrar todos os ninjas (READ)
@@ -31,7 +32,8 @@ public class NinjaController {
         return ninja_service.ListarNinjas();
     }
 
-    // Mostrar ninja por id {PathVariable} (READ)
+    // Mostrar ninja por id  (READ)
+    // {PathVariable} faz com que o usuario mande a variavel que seria o id, pelo caminho/url
     @GetMapping("/listarID/{id}")
     public NinjaModel ListarNinjasPorId(@PathVariable Long id) {
         return ninja_service.ListarNinjasPorId(id);
