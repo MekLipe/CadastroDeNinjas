@@ -20,7 +20,7 @@ public @interface Anotações {
     * -Ve commits prontos para push:
     * git cherry -v
     *
-    *
+    * sair do gitlog :wq
     *
     *
     */
