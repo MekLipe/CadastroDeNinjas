@@ -16,10 +16,22 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
+
+    @Column
     private String nome;
+
+    @Column
     private String email;
+
+    @Column
     private int idade;
+
+    @Column
+    private String rank;
+
+    @Column
     private String img_url;
 
     // N/Many/Vários Ninjas será atrelada a 1 Missão

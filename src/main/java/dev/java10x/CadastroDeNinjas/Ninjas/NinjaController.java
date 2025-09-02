@@ -22,27 +22,27 @@ public class NinjaController {
     // Adicionar ninja (CREATE)
     // @RequestBody faz com que o usuário envie um dado no qual vai ser serializado e inserido no BD
     @PostMapping("/criar")
-    public NinjaModel CriarNinja(@RequestBody NinjaModel ninja) {
+    public NinjaDTO CriarNinja(@RequestBody NinjaDTO ninja) {
         return ninja_service.CriarNinja(ninja);
     }
 
     // Mostrar todos os ninjas (READ)
     @GetMapping("/listar")
-    public List<NinjaModel> ListarNinjas() {
+    public List<NinjaDTO> ListarNinjas() {
         return ninja_service.ListarNinjas();
     }
 
     // Mostrar ninja por id  (READ)
     // {PathVariable} faz com que o usuario mande a variavel que seria o id, pelo caminho/url
     @GetMapping("/listarID/{id}")
-    public NinjaModel ListarNinjasPorId(@PathVariable Long id) {
+    public NinjaDTO ListarNinjasPorId(@PathVariable Long id) {
         return ninja_service.ListarNinjasPorId(id);
     }
 
     // Alterar dados dos ninjas (UPDATE)
     @PutMapping("/alterar/{id}")
-    public NinjaModel AlterarNinjaPorId(@PathVariable Long id, @RequestBody NinjaModel ninja_atulizado) {
-        return ninja_service.AtualizarNinja(id, ninja_atulizado);
+    public NinjaDTO AlterarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninja_atualizado) {
+        return ninja_service.AtualizarNinja(id, ninja_atualizado);
     }
 
     // Deletar Ninja (DELETE)
