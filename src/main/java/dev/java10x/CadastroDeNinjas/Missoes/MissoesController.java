@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("missoes")
+@RequestMapping("/missoes")
 public class MissoesController {
 
     public MissoesController(MissoesService missoes_service) {
@@ -13,34 +13,33 @@ public class MissoesController {
 
     private MissoesService missoes_service;
 
-    // GET -- Mandar uma requisao para mostrar as missoes
+    // GET -- Mandar uma requisição para mostrar as missoes
     @GetMapping("/listar")
-    public List<MissoesModel> ListarMissoes() {
+    public List<MissoesDTO> ListarMissoes() {
         return missoes_service.ListarMissoes();
     }
 
+    // GET -- Madanr uma requisição para listar uma missao por id
     @GetMapping("/listarID/{id}")
-    public MissoesModel ListarMissaoPorId(@PathVariable Long id){
+    public MissoesDTO ListarMissaoPorId(@PathVariable Long id){
         return missoes_service.ListarMissaoPorId(id);
     }
 
-    // Post -- Mandar uma requisao para criar as missoes
+    // Post -- Mandar uma requisiçao para criar as missoes
     @PostMapping("/criar")
-    public void CriarMissao(@RequestBody MissoesModel missao) {
+    public void CriarMissao(@RequestBody MissoesDTO missao) {
         missoes_service.CriarMissao(missao);
     }
 
-    // PUT -- Mandar uma requisao para alterar as missoes
-    @PutMapping("/alterar")
-    public String AlterarMissao() {
-        return "Missao alterada com sucesso";
+    // PUT -- Mandar uma requisiçao para alterar as missoes
+    @PutMapping("/alterarID/{id}")
+    public MissoesDTO AlterarMissao(@PathVariable Long id, @RequestBody MissoesDTO missao_atualizada) {
+        return missoes_service.AtualizarMissao(id, missao_atualizada);
     }
 
-    // Delete -- Mandar uma requisao para deletar as missoes
-    @DeleteMapping("/deletar/{id}")
+    // Delete -- Mandar uma requisiçao para deletar as missoes
+    @DeleteMapping("/deletarID/{id}")
     public void DeletarMissao(@PathVariable Long id) {
         missoes_service.DeletarMissao(id);
     }
-
-
 }
