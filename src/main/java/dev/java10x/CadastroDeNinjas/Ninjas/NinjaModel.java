@@ -1,5 +1,7 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,14 +18,27 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
+
+    @Column
     private String nome;
+
+    @Column
     private String email;
+
+    @Column
     private int idade;
+
+    @Column
+    private String rank;
+
+    @Column
     private String img_url;
 
     // N/Many/Vários Ninjas será atrelada a 1 Missão
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "missoes_id") //Foreign Key
     private MissoesModel missoes;
 }
