@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 @Service
 public class MissoesService {
 
-    private MissoesRepository missoes_repository;
-    private MissoesMapper missoes_mapper;
+    private final MissoesRepository missoes_repository;
+    private final MissoesMapper missoes_mapper;
 
     public MissoesService(MissoesRepository missoes_repository, MissoesMapper missoes_mapper) {
         this.missoes_repository = missoes_repository;

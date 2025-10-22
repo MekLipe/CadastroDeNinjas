@@ -14,7 +14,7 @@ public class NinjaController {
         this.ninja_service = ninja_service;
     }
 
-    private NinjaService ninja_service;
+    private final NinjaService ninja_service;
 
     @GetMapping("/boasvindas")
     public String BoasVindas(){

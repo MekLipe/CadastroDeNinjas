@@ -14,7 +14,7 @@ public class MissoesController {
         this.missoes_service = missoes_service;
     }
 
-    private MissoesService missoes_service;
+    private final MissoesService missoes_service;
 
     // GET -- Mandar uma requisição para mostrar as missoes
     @GetMapping("/listar")
