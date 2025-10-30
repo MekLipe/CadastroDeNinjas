@@ -1,5 +1,7 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +13,12 @@ public class NinjaService {
 
     private final NinjaRepository ninja_repository;
     private final NinjaMapper ninja_mapper;
+    private final MissoesRepository missoes_repository;
 
-    public NinjaService(NinjaRepository ninja_repository, NinjaMapper ninja_mapper) {
+    public NinjaService(NinjaRepository ninja_repository, NinjaMapper ninja_mapper, MissoesRepository missoes_repository) {
         this.ninja_repository = ninja_repository;
         this.ninja_mapper = ninja_mapper;
+        this.missoes_repository = missoes_repository;
     }
 
     //Criar novo ninja (CREATE)
@@ -44,8 +48,17 @@ public class NinjaService {
         if (ninja_existente.isPresent()){
             NinjaModel ninja_atualizado = ninja_mapper.map(ninjaDTO);
             ninja_atualizado.setId(id);
-            NinjaModel ninja_salvo = ninja_repository.save(ninja_atualizado);
-            return ninja_mapper.map(ninja_salvo);
+
+            // Verifica se há missão associada
+            if (ninjaDTO.getMissoes() != null && ninjaDTO.getMissoes().getId() != null) {
+                MissoesModel missao = missoes_repository.findById(ninjaDTO.getMissoes().getId())
+                        .orElseThrow(() -> new IllegalArgumentException("Missão não encontrada"));
+                ninja_atualizado.setMissoes(missao);
+            } else {
+                ninja_atualizado.setMissoes(null); // remove a missão ou retorna vazia(sem missão atrelada ao ninja)
+            }
+            NinjaModel ninjaSalvo = ninja_repository.save(ninja_atualizado);
+            return ninja_mapper.map(ninjaSalvo);
         }
         return null;
     }

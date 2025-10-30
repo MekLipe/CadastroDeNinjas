@@ -1,18 +1,19 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 // A annotation @Entity transforma uma classe em uma entidade no BD
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
+@ToString(exclude = "missoes")
 @Table(name = "tb_cadastro")
 public class NinjaModel {
 
