@@ -15,6 +15,6 @@ import java.util.List;
 public class MissoesDTO {
     private Long id;
     private String nome;
-    private char dificuldade;
+    private String dificuldade;
     private List<NinjaDTO> ninjas;
 }

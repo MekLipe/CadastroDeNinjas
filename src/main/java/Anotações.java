@@ -7,6 +7,14 @@ public @interface Anotações {
     * -    Get:  Mostrar
     * - Delete:  Deletar
     *
+    * HttpResponses:
+    * - 200 ok
+    * - 201 criado com sucesso
+    * - 400 enviado algo inválido/errado
+    * - 401 não autenticado
+    * - 404 não encontrado
+    * - 500 erro no servidor
+    *
     * O JPA serve para facilitar usando a vida do programador, pois ele é um compilado de queries do BD em forma de métodos
     *
     *

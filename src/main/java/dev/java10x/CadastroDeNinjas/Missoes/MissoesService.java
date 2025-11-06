@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Missoes;
 
+import dev.java10x.CadastroDeNinjas.Ninjas.NinjaMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,10 +36,10 @@ public class MissoesService {
         return missao_encontrada.map(missoes_mapper::map).orElse(null);
     }
 
-    public MissoesDTO AtualizarMissao(Long id, MissoesDTO misssaoDTO){
+    public MissoesDTO AtualizarMissao(Long id, MissoesDTO missaoDTO){
         Optional<MissoesModel> missao_existente = missoes_repository.findById(id);
         if (missao_existente.isPresent()){
-            MissoesModel missao_atualizada = missoes_mapper.map(misssaoDTO);
+            MissoesModel missao_atualizada = missoes_mapper.map(missaoDTO);
             missao_atualizada.setId(id);
             MissoesModel missao_salva = missoes_repository.save(missao_atualizada);
             return missoes_mapper.map(missao_salva);

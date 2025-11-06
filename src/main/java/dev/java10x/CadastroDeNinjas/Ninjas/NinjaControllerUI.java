@@ -1,6 +1,5 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 import dev.java10x.CadastroDeNinjas.Missoes.MissoesDTO;
-import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import dev.java10x.CadastroDeNinjas.Missoes.MissoesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ public class NinjaControllerUI {
     public String ListarNinjas(Model model) {
         List<NinjaDTO> ninjas = ninja_service.ListarNinjas();
         model.addAttribute("ninjas", ninjas);
-        return "ListarNinjas"; //tem que retornar o nome da página que renderiza
+        return "Ninjas/ListarNinjas"; //tem que retornar o nome da página que renderiza
     }
 
     @GetMapping("/deletar/{id}")
@@ -40,19 +39,19 @@ public class NinjaControllerUI {
         NinjaDTO ninja =  ninja_service.ListarNinjasPorId(id);
         if (ninja !=null) {
             model.addAttribute("ninja", ninja);
-            return "DetalhesNinja";
+            return "Ninjas/DetalhesNinja";
         } else {
             model.addAttribute("mensagem", "Ninja não encontrado");
-            return "ListarNinjas";
+            return "Ninjas/ListarNinjas";
         }
     }
 
     @GetMapping("/adicionar")
     public String MostrarFormularioAdicionarNinja(Model model) {
         model.addAttribute("ninja", new NinjaDTO());
-        List<MissoesDTO> todasAsMissoes = missoes_service.ListarMissoes();
-        model.addAttribute("todasAsMissoes", todasAsMissoes);
-        return "AdicionarNinja";
+        List<MissoesDTO> missoes = missoes_service.ListarMissoes();
+        model.addAttribute("missoes", missoes);
+        return "Ninjas/AdicionarNinja";
     }
 
     @PostMapping("/salvar")
@@ -76,7 +75,7 @@ public class NinjaControllerUI {
             List<MissoesDTO> missoes = missoes_service.ListarMissoes(); // 🔹 busca todas as missões
             model.addAttribute("ninja", ninja);
             model.addAttribute("missoes", missoes);
-            return "AlterarNinja";
+            return "Ninjas/AlterarNinja";
         } else {
             model.addAttribute("mensagem", "Ninja não encontrado");
             return "redirect:/ninjas/ui/listar";

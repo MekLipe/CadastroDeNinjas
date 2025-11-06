@@ -22,7 +22,7 @@ public class MissoesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private char dificuldade;
+    private String dificuldade;
 
     // 1 Missão será atrelada a N/Many/Vários Ninjas
     @OneToMany(mappedBy = "missoes", fetch = FetchType.EAGER)
