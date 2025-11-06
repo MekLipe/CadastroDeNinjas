@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Missão</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #DC143C;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #b21232;
+        }
+
+        .mensagem {
+            color: #DC143C;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #DC143C;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #b21232;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Adicionar Nova Missão</h1>
+
+<div class="form-container">
+    <!-- Formulário de criação da missão -->
+    <form th:action="@{/missoes/ui/salvar}" th:object="${missao}" method="post">
+
+        <!-- Nome da missão -->
+        <label for="nome">Nome da Missão:</label>
+        <input type="text" id="nome" th:field="*{nome}" required>
+
+        <!-- Dificuldade -->
+        <label for="dificuldade">Dificuldade:</label>
+        <select id="dificuldade" th:field="*{dificuldade}" required>
+            <option value="">-- Selecione --</option>
+            <option value="C">C (Fácil)</option>
+            <option value="B">B (Média)</option>
+            <option value="A">A (Difícil)</option>
+            <option value="S">S (Extrema)</option>
+        </select>
+
+        <button type="submit">Cadastrar Missão</button>
+    </form>
+
+    <a th:href="@{/missoes/ui/listar}">← Voltar para a lista de missões</a>
+</div>
+</body>
+</html>

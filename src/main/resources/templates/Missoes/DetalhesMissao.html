@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Missão</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #DC143C;
+        }
+
+        .info {
+            margin-bottom: 20px;
+        }
+
+        .info label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .info p {
+            margin: 5px 0 15px;
+            color: #555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #DC143C;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            background-color: #DC143C;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #a70f2d;
+        }
+
+        .no-ninjas {
+            color: #777;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Detalhes da Missão</h1>
+
+    <!-- Informações principais da missão -->
+    <div class="info">
+        <label>ID:</label>
+        <p th:text="${missao.id}">1</p>
+
+        <label>Nome:</label>
+        <p th:text="${missao.nome}">Patrulhar a Aldeia</p>
+
+        <label>Dificuldade:</label>
+        <p th:text="${missao.dificuldade}">C</p>
+    </div>
+
+    <!-- Lista de ninjas atribuídos -->
+    <h2>Ninjas Atrelados</h2>
+
+    <div th:if="${missao.ninjas != null and !missao.ninjas.isEmpty()}">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Rank</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ninja : ${missao.ninjas}">
+                <td th:text="${ninja.id}"></td>
+                <td th:text="${ninja.nome}"></td>
+                <td th:text="${ninja.email}"></td>
+                <td th:text="${ninja.rank}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${missao.ninjas == null or missao.ninjas.isEmpty()}" class="no-ninjas">
+        <p>Nenhum ninja está atrelado a esta missão no momento.</p>
+    </div>
+
+    <div style="text-align: center;">
+        <a th:href="@{/missoes/ui/listar}">Voltar à Lista de Missões</a>
+    </div>
+</div>
+
+</body>
+</html>
